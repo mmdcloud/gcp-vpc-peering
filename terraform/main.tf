@@ -119,3 +119,15 @@ module "instance2" {
     }
   ]
 }
+
+resource "google_compute_network_peering" "peering1" {
+  name         = "peering1"
+  network      = module.vpc1.self_link
+  peer_network = module.vpc2.self_link
+}
+
+resource "google_compute_network_peering" "peering2" {
+  name         = "peering2"
+  network      = module.vpc2.self_link
+  peer_network = module.vpc1.self_link
+}
